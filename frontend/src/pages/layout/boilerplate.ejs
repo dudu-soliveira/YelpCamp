@@ -42,8 +42,10 @@
 
     <%- include('../partials/footer.ejs') %>
 
-    <script src="/javascripts/navbarResponsive.js"></script>
-    <% if (flash.success && flash.success.length) { %>
+    <script src="/javascripts/mobileButtonResponsive.js"></script>
+    <% if (currentUser) { %>
+    <script src="/javascripts/profileButtonResponsive.js"></script>
+    <% } %> <% if (flash.success && flash.success.length) { %>
     <script src="/javascripts/flashSuccessDismiss.js"></script>
     <% } %> <% if (flash.error && flash.error.length) { %>
     <script src="/javascripts/flashErrorDismiss.js"></script>
