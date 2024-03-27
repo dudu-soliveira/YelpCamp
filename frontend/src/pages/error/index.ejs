@@ -1,0 +1,16 @@
+<% layout('layout/boilerplate') %>
+
+<div role="alert" class="mx-auto mt-5 max-w-2xl">
+  <h1
+    class="<%= env !== 'production' ? 'rounded-t' : 'rounded' %> bg-red-500 px-4 py-2 text-3xl font-bold text-white"
+  >
+    <%= err.message %>
+  </h1>
+  <% if (env !== 'production') { %>
+  <div
+    class="rounded-b border border-t-0 border-red-400 bg-red-100 px-4 py-3 text-red-700"
+  >
+    <p><%= err.stack %></p>
+  </div>
+  <% } %>
+</div>

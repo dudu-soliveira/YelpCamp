@@ -1,0 +1,17 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others \"cd backend && npm start\" \"cd frontend && npm run build\" \"sleep 1s && cd frontend && npm start\" ",
+    "front": "concurrently --kill-others \"cd frontend && npm start\" \"cd frontend && npm run build\"",
+    "back": "cd backend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

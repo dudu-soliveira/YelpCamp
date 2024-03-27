@@ -1,0 +1,202 @@
+<% layout('layout/boilerplate') %>
+
+<div class="mx-auto max-w-xl">
+  <h1 class="mb-10 text-center text-4xl font-bold">Edit Campground</h1>
+  <form
+    class="group mx-auto w-full"
+    action="/campgrounds/<%= campground._id %>?_method=PUT"
+    method="POST"
+    enctype="multipart/form-data"
+    novalidate
+  >
+    <div class="group relative z-0 mb-5 w-full">
+      <input
+        type="text"
+        name="campground[title]"
+        id="title"
+        class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+        placeholder=" "
+        value="<%= campground.title %>"
+        required
+      />
+      <label
+        for="title"
+        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+        ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+          >Title</span
+        ></label
+      >
+    </div>
+    <div class="group relative z-0 mb-5 w-full">
+      <input
+        type="text"
+        name="campground[price]"
+        id="price"
+        class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 pl-4 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 invalid:[&:not(:placeholder-shown)]:border-red-600"
+        placeholder=" "
+        pattern="^\d+(\.\d{1,2})?$"
+        value="<%= campground.price %>"
+        required
+      />
+      <label
+        for="price"
+        class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:invalid:focus:not(:placeholder-shown)]:text-red-600 peer-[&:invalid:not(:placeholder-shown)]:text-red-600 peer-[&:valid:focus]:text-green-600"
+        ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+          >Price</span
+        ></label
+      >
+      <span
+        class="absolute -z-10 -translate-y-9 transform px-0.5 text-gray-900 duration-75 ease-out peer-placeholder-shown:opacity-0 peer-focus:opacity-80 peer-focus:duration-200 peer-focus:ease-in"
+        >$</span
+      >
+      <span
+        class="mt-2 hidden text-sm text-red-600 peer-[&:invalid:not(:placeholder-shown)]:block"
+      >
+        Please enter a valid price
+      </span>
+    </div>
+    <div class="grid grid-cols-4 gap-6">
+      <div class="group relative z-0 col-span-3 mb-5 w-full">
+        <input
+          type="text"
+          name="campground[city]"
+          id="city"
+          class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+          placeholder=" "
+          value="<%= campground.city %>"
+          required
+        />
+        <label
+          for="city"
+          class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+          ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+            >City</span
+          ></label
+        >
+      </div>
+      <div class="group relative z-10 mb-5 w-full">
+        <input
+          type="text"
+          name="campground[state]"
+          list="states"
+          id="state"
+          class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 invalid:[&:not(:placeholder-shown)]:border-red-600"
+          placeholder=" "
+          pattern="<%= states.join('|') %>"
+          value="<%= campground.state %>"
+          required
+        />
+        <label
+          for="state"
+          class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:invalid:focus:not(:placeholder-shown)]:text-red-600 peer-[&:invalid:not(:placeholder-shown)]:text-red-600 peer-[&:valid:focus]:text-green-600"
+          ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+            >State</span
+          ></label
+        >
+        <span
+          class="mt-2 hidden text-sm text-red-600 peer-[&:invalid:not(:placeholder-shown)]:block"
+        >
+          Invalid state
+        </span>
+        <datalist id="states">
+          <% for (let state of states) { %>
+          <option value="<%= state %>"><%= state %></option>
+          <% } %>
+        </datalist>
+      </div>
+    </div>
+    <div class="group relative z-0 mb-5 w-full">
+      <textarea
+        id="textarea"
+        name="campground[description]"
+        class="peer block h-28 w-full resize-none appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+        placeholder=" "
+        required
+      >
+<%= campground.description %></textarea
+      >
+      <label
+        for="textarea"
+        class="absolute top-3 origin-[0] -translate-y-6 scale-75 transform bg-white text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+        ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+          >Description</span
+        ></label
+      >
+    </div>
+    <div class="mb-7">
+      <h2 class="mb-5 text-gray-700">Images</h2>
+      <div class="group relative z-0 mb-5 w-full">
+        <input
+          type="file"
+          name="images"
+          id="images"
+          class="peer block w-full border-0 border-b-2 border-gray-300 px-0 py-2.5 file:mr-5 file:border-0 file:bg-transparent file:p-0 file:text-sm file:font-medium file:text-blue-600 hover:file:cursor-pointer hover:file:text-blue-400"
+          multiple
+          accept=".png,.jpeg,.jpg"
+        />
+        <label
+          for="images"
+          class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform font-medium text-gray-500 duration-300"
+          ><span>Add images</span>
+        </label>
+      </div>
+      <div>
+        <h3 class="origin-[0] scale-75 font-medium text-gray-500">
+          Delete images
+        </h3>
+        <div class="flex max-w-xl flex-wrap justify-between">
+          <% campground.images.forEach(function(img, i) { %>
+          <div
+            class="ml-3 mt-3 w-40 rounded-lg border border-gray-200 bg-white shadow"
+          >
+            <div class="inline-flex w-40">
+              <label
+                class="relative flex cursor-pointer flex-col items-center rounded-full"
+                for="image-<%= i %>"
+              >
+                <img
+                  class="block h-32 w-40 rounded-t-lg object-cover object-center"
+                  src="<%= img.thumbnail %>"
+                />
+                <input
+                  class="peer relative my-0.5 h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-gray-300 transition-all checked:border-blue-600 checked:bg-blue-600"
+                  type="checkbox"
+                  id="image-<%= i %>"
+                  name="deleteImages[]"
+                  value="<%= img.filename %>"
+                />
+                <span
+                  class="pointer-events-none absolute bottom-0 left-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100"
+                  >&check;
+                </span>
+              </label>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="mt-2 hidden text-red-600" id="missingImagesMessage">
+        <p>Campground must have at least 1 image.</p>
+        <p>
+          You need to upload an image if you want to delete all existing images.
+        </p>
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <a href="/campgrounds/<%= campground._id %>">
+        <button
+          type="button"
+          class="rounded-lg bg-red-700 px-5 py-2.5 text-center font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
+        >
+          Cancel
+        </button>
+      </a>
+      <button
+        type="submit"
+        class="rounded-lg bg-blue-700 px-5 py-2.5 text-center font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 group-invalid:pointer-events-none group-invalid:opacity-30"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

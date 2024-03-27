@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/favicon.svg" type="image/x-icon" />
+    <% if (hasOwnProperty("campground") && title === campground.title) { %>
+    <link rel="stylesheet" href="/stylesheets/stars.css" />
+    <script
+      src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <% } %> <% if (!hasOwnProperty("campground") && title === 'All Campgrounds')
+    { %>
+    <script
+      src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <% } %>
+    <link rel="stylesheet" href="/stylesheets/output.css" />
+    <title><%= title %></title>
+  </head>
+  <body class="relative flex h-auto min-h-screen flex-col">
+    <%- include('../partials/navbar.ejs') %> <%-
+    include('../partials/flash.ejs') %>
+
+    <main
+      class="<%= title === 'All Campgrounds' ? '' : 'py-10 px-5' %> flex w-full grow flex-col"
+    >
+      <%- body -%>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script src="/javascripts/navbarResponsive.js"></script>
+    <% if (flash.success && flash.success.length) { %>
+    <script src="/javascripts/flashSuccessDismiss.js"></script>
+    <% } %> <% if (flash.error && flash.error.length) { %>
+    <script src="/javascripts/flashErrorDismiss.js"></script>
+    <% } %> <% if (hasOwnProperty("campground") && title === campground.title) {
+    %>
+    <script>
+      const accessToken = "<%- mapBoxAccessToken %>";
+      const campground = <%- JSON.stringify(campground) %>;
+    </script>
+    <script src="/javascripts/showPageMap.js"></script>
+    <script src="/javascripts/reviewStarValidation.js"></script>
+    <script src="/tw-elements.umd.min.js"></script>
+    <% if (currentUser) { %>
+    <script src="/javascripts/preventWhitespaceInput.js"></script>
+    <% } %> <% } %> <% if (title === 'All Campgrounds' &&
+    !hasOwnProperty("campground")) { %>
+    <script>
+      const accessToken = "<%- mapBoxAccessToken %>";
+      const campgrounds = {features: <%- JSON.stringify(campgrounds) %>}
+    </script>
+    <script src="/javascripts/clusterMap.js"></script>
+    <script src="/javascripts/campgroundsScroll.js"></script>
+    <% } %> <% if (title === 'New Campground') { %>
+    <script src="/javascripts/newFormImageErrorStyles.js"></script>
+    <script src="/javascripts/preventWhitespaceInput.js"></script>
+    <% } %> <%if(hasOwnProperty("campground") && title === 'Edit: ' +
+    campground.title){%>
+    <script src="/javascripts/editFormImageValidation.js"></script>
+    <script src="/javascripts/preventWhitespaceInput.js"></script>
+    <% } %> <% if (title === 'Log In') { %>
+    <script src="/javascripts/preventWhitespaceInput.js"></script>
+    <% } %> <% if (title === 'Sign Up') { %>
+    <script src="/javascripts/preventWhitespaceInput.js"></script>
+    <% } %> <% if (hasOwnProperty("username") && title === username &&
+    currentUser.username === username) { %>
+    <script src="/javascripts/profile.js"></script>
+    <% } %>
+  </body>
+</html>

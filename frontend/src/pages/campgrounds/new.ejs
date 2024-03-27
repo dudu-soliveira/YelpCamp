@@ -1,0 +1,150 @@
+<% layout('layout/boilerplate') %>
+
+<div class="flex w-full grow items-center">
+  <div class="mx-auto max-w-xl">
+    <h1 class="mb-10 text-center text-4xl font-bold">New Campground</h1>
+    <form
+      class="group mx-auto w-full"
+      action="/campgrounds"
+      method="POST"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <div class="group relative z-0 mb-5 w-full">
+        <input
+          type="text"
+          name="campground[title]"
+          id="title"
+          class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+          placeholder=" "
+          required
+        />
+        <label
+          for="title"
+          class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+          ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+            >Title</span
+          ></label
+        >
+      </div>
+      <div class="group relative z-0 mb-5 w-full">
+        <input
+          type="text"
+          name="campground[price]"
+          id="price"
+          class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 pl-4 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 invalid:[&:not(:placeholder-shown)]:border-red-600"
+          placeholder=" "
+          pattern="^\d+(\.\d{1,2})?$"
+          required
+        />
+        <label
+          for="price"
+          class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:invalid:focus:not(:placeholder-shown)]:text-red-600 peer-[&:invalid:not(:placeholder-shown)]:text-red-600 peer-[&:valid:focus]:text-green-600"
+          ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+            >Price</span
+          ></label
+        >
+        <span
+          class="absolute -z-10 -translate-y-9 transform px-0.5 text-gray-900 duration-75 ease-out peer-placeholder-shown:opacity-0 peer-focus:opacity-80 peer-focus:duration-200 peer-focus:ease-in"
+          >$</span
+        >
+        <span
+          class="mt-2 hidden text-sm text-red-600 peer-[&:invalid:not(:placeholder-shown)]:block"
+        >
+          Please enter a valid price
+        </span>
+      </div>
+      <div class="grid grid-cols-4 gap-6">
+        <div class="group relative z-0 col-span-3 mb-5 w-full">
+          <input
+            type="text"
+            name="campground[city]"
+            id="city"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+            placeholder=" "
+            required
+          />
+          <label
+            for="city"
+            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+            ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+              >City</span
+            ></label
+          >
+        </div>
+        <div class="group relative z-10 mb-5 w-full">
+          <input
+            type="text"
+            name="campground[state]"
+            list="states"
+            id="state"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 invalid:[&:not(:placeholder-shown)]:border-red-600"
+            placeholder=" "
+            pattern="<%= states.join('|') %>"
+            required
+          />
+          <label
+            for="state"
+            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:invalid:focus:not(:placeholder-shown)]:text-red-600 peer-[&:invalid:not(:placeholder-shown)]:text-red-600 peer-[&:valid:focus]:text-green-600"
+            ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+              >State</span
+            ></label
+          >
+          <span
+            class="mt-2 hidden text-sm text-red-600 peer-[&:invalid:not(:placeholder-shown)]:block"
+          >
+            Invalid state
+          </span>
+          <datalist id="states">
+            <% for (let state of states) { %>
+            <option value="<%= state %>"><%= state %></option>
+            <% } %>
+          </datalist>
+        </div>
+      </div>
+      <div class="group relative z-0 mb-5 w-full">
+        <textarea
+          id="textarea"
+          name="campground[description]"
+          class="peer block h-28 w-full resize-none appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+          placeholder=" "
+          required
+        ></textarea>
+        <label
+          for="textarea"
+          class="absolute top-3 origin-[0] -translate-y-6 scale-75 transform bg-white text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+          ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+            >Description</span
+          ></label
+        >
+      </div>
+      <div class="group relative z-0 mb-7 w-full">
+        <input
+          type="file"
+          name="images"
+          id="images"
+          class="peer block w-full border-0 border-b-2 border-gray-300 px-0 py-2.5 file:mr-5 file:border-0 file:bg-transparent file:p-0 file:text-sm file:font-medium file:text-blue-600 valid:border-green-600 hover:file:cursor-pointer hover:file:text-blue-400"
+          multiple
+          accept=".png,.jpeg,.jpg"
+          required
+        />
+        <label
+          for="images"
+          class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform font-medium text-gray-500 duration-300 peer-valid:text-green-600"
+          ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+            >Images</span
+          >
+        </label>
+        <span class="mt-2 hidden text-sm text-red-600"
+          >Please select valid images (JPEG, JPG, PNG)</span
+        >
+      </div>
+      <button
+        type="submit"
+        class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 group-invalid:pointer-events-none group-invalid:opacity-30 sm:w-auto"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

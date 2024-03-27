@@ -1,0 +1,37 @@
+<% layout('layout/boilerplate') %>
+
+<div id="map" class="h-72 w-full sm:h-96 2xl:h-[500px]"></div>
+
+<h1
+  class="my-10 px-4 text-center text-4xl font-extrabold min-[500px]:text-5xl sm:text-6xl"
+>
+  All Campgrounds
+</h1>
+<div
+  id="campgroundsContainer"
+  class="flex flex-wrap justify-evenly text-gray-900 xl:px-20"
+>
+  <% for (let i = 0; i < campgrounds.length; i++) { %>
+  <div
+    class="<%= i >= 15 ? 'hidden' : '' %> m-5 w-full max-w-lg sm:max-w-xl lg:max-w-md"
+  >
+    <a
+      href="/campgrounds/<%= campgrounds[i]._id %>"
+      class="flex flex-col items-center rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 lg:flex-row"
+    >
+      <img
+        class="h-56 w-full rounded-t-lg object-cover object-center sm:h-72 lg:h-48 lg:w-40 lg:rounded-none lg:rounded-s-lg"
+        src="<%= campgrounds[i].images[0].url.replace('upload/', 'upload/w_800/') %>"
+        crossorigin="anonymous"
+      />
+      <div class="flex flex-col justify-between self-start p-4 lg:self-center">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight">
+          <%= campgrounds[i].title %>
+        </h5>
+        <h6>Price: $<%= campgrounds[i].price %></h6>
+        <h6>Location: <%= campgrounds[i].location %></h6>
+      </div>
+    </a>
+  </div>
+  <% } %>
+</div>

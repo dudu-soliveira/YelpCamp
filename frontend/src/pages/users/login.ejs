@@ -1,0 +1,71 @@
+<% layout('layout/boilerplate') %>
+
+<div class="flex w-full grow items-center">
+  <div class="mx-auto w-full max-w-lg rounded shadow-xl">
+    <img
+      src="/images/login-signup.jpeg"
+      alt=""
+      class="h-56 w-full rounded-t object-cover object-center min-[400px]:h-64 sm:h-72"
+    />
+    <div class="mt-4 w-full p-6">
+      <h1 class="mb-4 text-2xl font-bold">Log In</h1>
+      <form
+        class="group mx-auto w-full"
+        action="/login"
+        method="POST"
+        novalidate
+      >
+        <div class="group relative z-0 mb-5 w-full">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600"
+            placeholder=" "
+            autofocus
+            required
+          />
+          <label
+            for="username"
+            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:valid:focus]:text-green-600"
+            ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+              >Username</span
+            ></label
+          >
+        </div>
+        <div class="group relative z-0 mb-7 w-full">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-gray-900 transition-colors duration-300 valid:border-green-600 focus:border-blue-600 focus:outline-none focus:ring-0 valid:focus:border-green-600 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-600 invalid:[&:not(:placeholder-shown)]:border-red-600"
+            placeholder=" "
+            required
+          />
+          <label
+            for="image"
+            class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-valid:text-green-600 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 peer-[&:invalid:focus:not(:placeholder-shown)]:text-red-600 peer-[&:invalid:not(:placeholder-shown)]:text-red-600 peer-[&:valid:focus]:text-green-600"
+            ><span class="after:ml-0.5 after:text-red-600 after:content-['*']"
+              >Password</span
+            ></label
+          >
+          <span
+            class="mt-2 hidden text-sm text-red-600 peer-[&:invalid:not(:placeholder-shown)]:block"
+          >
+            Please enter a valid password
+          </span>
+        </div>
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 group-invalid:pointer-events-none group-invalid:opacity-30"
+        >
+          Log In
+        </button>
+      </form>
+      <h2 class="mt-5 text-lg">
+        Don't have an account?
+        <a href="/signup" class="inline-block text-blue-600">Sign Up</a>
+      </h2>
+    </div>
+  </div>
+</div>
