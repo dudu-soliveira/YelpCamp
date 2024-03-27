@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others \"cd backend && npm start\" \"cd frontend && npm run build\" \"sleep 1s && cd frontend && npm start\" ",
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "cd backend && node src/index.js",
+    "dev": "concurrently --kill-others \"cd backend && npm start\" \"cd frontend && npm run build\" \"sleep 1s && cd frontend && npm start\" ",
     "front": "concurrently --kill-others \"cd frontend && npm start\" \"cd frontend && npm run build\"",
     "back": "cd backend && npm start"
   },
