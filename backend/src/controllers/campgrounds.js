@@ -12,7 +12,7 @@ module.exports.index = async (req, res, next) => {
   res.render("campgrounds", {
     campgrounds,
     title: "All Campgrounds",
-    mapBoxAccessToken: process.env.MAPBOX_TOKEN,
+    mapBoxAccessToken: mapBoxToken,
   });
 };
 
@@ -64,7 +64,7 @@ module.exports.showCampground = async (req, res, next) => {
     campground,
     reviews: campground.reviews,
     title: campground.title,
-    mapBoxAccessToken: process.env.MAPBOX_TOKEN,
+    mapBoxAccessToken: mapBoxToken,
   });
 };
 
