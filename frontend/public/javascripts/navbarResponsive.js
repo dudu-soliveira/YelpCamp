@@ -3,26 +3,28 @@ const mobileBtn = document.querySelector("#mobile-menu-button");
 const profile = document.querySelector("#user-menu");
 const profileBtn = document.querySelector("#user-menu-button");
 
-profileBtn.addEventListener("focusin", () => {
-  profile.classList.remove("hidden");
-  setTimeout(() => {
-    profile.setAttribute("aria-hidden", "false");
-  }, 50);
-  profileBtn.setAttribute("aria-expanded", "true");
-});
-
-profileBtn.addEventListener("focusout", () => {
-  profile.setAttribute("aria-hidden", "true");
-  profileBtn.setAttribute("aria-expanded", "false");
-});
-
-profile.addEventListener("transitionend", () => {
-  if (profile.ariaHidden === "true") {
+try {
+  profileBtn.addEventListener("focusin", () => {
+    profile.classList.remove("hidden");
     setTimeout(() => {
-      profile.classList.add("hidden");
+      profile.setAttribute("aria-hidden", "false");
     }, 50);
-  }
-});
+    profileBtn.setAttribute("aria-expanded", "true");
+  });
+
+  profileBtn.addEventListener("focusout", () => {
+    profile.setAttribute("aria-hidden", "true");
+    profileBtn.setAttribute("aria-expanded", "false");
+  });
+
+  profile.addEventListener("transitionend", () => {
+    if (profile.ariaHidden === "true") {
+      setTimeout(() => {
+        profile.classList.add("hidden");
+      }, 50);
+    }
+  });
+} catch {}
 
 mobileBtn.addEventListener("click", () => {
   mobile.classList.toggle("hidden");

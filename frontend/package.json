@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "browser-sync start --proxy localhost:3000 --files 'public,src'",
-    "build": "npx tailwindcss -i ./public/stylesheets/input.css -o ./public/stylesheets/output.css"
+    "build": "npx tailwindcss -i ./public/stylesheets/input.css -o ./public/stylesheets/output.css",
+    "dev": "browser-sync start --proxy localhost:3000 --files 'public,src' && npx tailwindcss -i ./public/stylesheets/input.css -o ./public/stylesheets/output.css --watch"
   },
   "keywords": [],
   "author": "",
